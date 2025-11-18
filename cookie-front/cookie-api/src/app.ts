@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 6789;
-const orginFrontEnd = process.env.FRONT || "http://localhost:5173";
+const orginFrontEnd = process.env.FRONT;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -18,6 +18,12 @@ app.use(
 );
 app.use(cookieParser());
 
+app.get("/", (req, res) => {
+  if (orginFrontEnd === undefined) {
+    return res.json("origin not set");
+  }
+  res.json("please call /api");
+});
 app.get("/api", (req, res) => {
   res.cookie(
     "my-cookie",
