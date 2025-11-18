@@ -29,8 +29,8 @@ app.get("/api", (req, res) => {
     "my-cookie",
     "542ae3a30b1c7b5011d4b15e4c1bd63ab002f436bc1f84173f4a19f63e8ff0954a145b195a20f2531019dcf5f89bed6dab7c77f432602bb93b64b0f909ec9f79",
     {
-      httpOnly: process.env.NODE_ENV === "development" ? false : true,
-      secure: process.env.NODE_ENV === "development" ? false : true,
+      httpOnly: process.env.NODE_ENV !== "development", // true in prod
+      secure: true,
       sameSite: "none",
       path: "/",
     }
