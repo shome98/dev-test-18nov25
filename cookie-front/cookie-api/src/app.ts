@@ -6,14 +6,30 @@ import cookieParser from "cookie-parser";
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 6789;
+const orginFrontEnd = process.env.FRONT || "http://localhost:5173";
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: orginFrontEnd,
+    credentials: true,
+  })
+);
 app.use(cookieParser());
 
-app.get("/", (req, res) => {
-  res.send("Hello, world!");
+app.get("/api", (req, res) => {
+  res.cookie(
+    "my-cookie",
+    "542ae3a30b1c7b5011d4b15e4c1bd63ab002f436bc1f84173f4a19f63e8ff0954a145b195a20f2531019dcf5f89bed6dab7c77f432602bb93b64b0f909ec9f79",
+    {
+      httpOnly: process.env.NODE_ENV === "development" ? false : true,
+      secure: process.env.NODE_ENV === "development" ? false : true,
+      sameSite: "none",
+      path: "/",
+    }
+  );
+  res.send(`Hello, world! from ${req.headers["user-agent"]}`);
 });
 
 app.listen(port, () => {
