@@ -15,6 +15,7 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/node": "^24.2.1",
+    "drizzle-kit": "^0.31.7",
     "nodemon": "^3.1.10",
     "tsx": "^4.20.3",
     "typescript": "^5.9.2"
