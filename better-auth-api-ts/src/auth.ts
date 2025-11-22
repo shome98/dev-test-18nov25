@@ -7,7 +7,7 @@ import config from "./environment-variables";
 
 export const auth = betterAuth({
   secret: config.BETTER_AUTH_SECRET,
-  trustedOrigins: [config.TRUSTED_ORIGIN_URL1],
+  trustedOrigins: [config.TRUSTED_ORIGIN_URL1, config.TRUSTED_ORIGIN_URL2],
   database: drizzleAdapter(db, {
     provider: "pg",
     schema: {
