@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.get("/", (req, res) => {
-  res.send("Hello, please use /api/auth/* routes!");
+  res.send("Hello, please use /api/auth/ routes!");
 });
 app.get("/api/me", async (req, res) => {
   const session = await auth.api.getSession({
